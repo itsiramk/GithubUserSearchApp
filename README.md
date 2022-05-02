@@ -27,9 +27,5 @@ User needs to fetch user details from API given below.
 
 *API For User Search List* - https://api.github.com/search/users
 
-<img width="217" alt="image1" src="https://user-images.githubusercontent.com/16866972/166190249-ea38d02f-721d-4616-8aa6-4633cfe7bd51.png">
-
-<img width="218" alt="image2" src="https://user-images.githubusercontent.com/16866972/166190257-eac7c7bf-5bf0-4963-9296-d987ee28df73.png">
-
-<img width="218" alt="image3" src="https://user-images.githubusercontent.com/16866972/166190260-f3b0bec2-85e4-4712-bc72-1c5686aaa8ad.png">
+<img width="217" alt="image1" src="https://user-images.githubusercontent.com/16866972/166190249-ea38d02f-721d-4616-8aa6-4633cfe7bd51.png"> <img width="218" alt="image2" src="https://user-images.githubusercontent.com/16866972/166190257-eac7c7bf-5bf0-4963-9296-d987ee28df73.png"> <img width="218" alt="image3" src="https://user-images.githubusercontent.com/16866972/166190260-f3b0bec2-85e4-4712-bc72-1c5686aaa8ad.png">
 
