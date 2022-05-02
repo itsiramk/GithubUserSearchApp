@@ -1,10 +1,11 @@
 package com.iram.githubusersearchapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,12 +38,8 @@ class MainActivity : AppCompatActivity() {
     private fun setupUI() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = MainAdapter()
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                recyclerView.context,
-                (recyclerView.layoutManager as LinearLayoutManager).orientation
-            )
-        )
+        recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, 0))
+        recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
     }
 

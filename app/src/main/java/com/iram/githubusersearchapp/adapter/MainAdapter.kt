@@ -1,8 +1,12 @@
 package com.iram.githubusersearchapp.adapter
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -12,13 +16,14 @@ import com.iram.githubusersearchapp.model.GithubUsers
 import kotlinx.android.synthetic.main.item_layout.view.*
 import javax.inject.Inject
 
+
 class MainAdapter  @Inject constructor(
 ) : RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
 
     private var users: ArrayList<GithubUsers> = ArrayList()
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(user: GithubUsers) {
+        fun bind(holder: DataViewHolder, user: GithubUsers) {
             itemView.tvUserName.text= user.login
             itemView.tvUserEmail.text = user.htmlUrl
 
@@ -28,6 +33,11 @@ class MainAdapter  @Inject constructor(
                 .error(R.drawable.avatar)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(itemView.imgAvatar)
+
+            holder.itemView.setOnClickListener {
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(user.htmlUrl))
+                startActivity(itemView.context, browserIntent, null)
+            }
         }
     }
 
@@ -42,7 +52,7 @@ class MainAdapter  @Inject constructor(
     override fun getItemCount(): Int = users.size
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
-        holder.bind(users[position])
+        holder.bind(holder, users[position])
 
     fun addData(users: List<GithubUsers>) {
         this.users.apply {
@@ -50,4 +60,5 @@ class MainAdapter  @Inject constructor(
             addAll(users)
         }
     }
+
 }
