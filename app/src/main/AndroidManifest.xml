@@ -13,7 +13,8 @@
         android:name=".MainApplication"
         android:theme="@style/Theme.GithubUserSearchApp">
 
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

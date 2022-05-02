@@ -5,7 +5,6 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,10 +44,44 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupAPICall() {
         mainViewModel.userListLiveData.observe(this, Observer {
-            recyclerView.visibility = View.VISIBLE
-            progressBar.visibility = View.GONE
-            renderList(it)
+            if (it.isNotEmpty()) {
+                recyclerView.visibility = View.VISIBLE
+                tvError.visibility = View.GONE
+                progressBar.visibility = View.GONE
+                renderList(it)
+            } else {
+                hideRView()
+            }
         })
+        mainViewModel.loading.observe(this, {
+            if (it) {
+                recyclerView.visibility = View.GONE
+                tvError.visibility = View.GONE
+                progressBar.visibility = View.VISIBLE
+            } else {
+                showRView()
+            }
+        })
+        mainViewModel.usersLoadError.observe(this, {
+            if (it != null) {
+                if (it.isNotEmpty()) {
+                    hideRView()
+                    tvError.text = it
+                }
+            }
+        })
+    }
+
+    private fun showRView() {
+        recyclerView.visibility = View.VISIBLE
+        tvError.visibility = View.GONE
+        progressBar.visibility = View.GONE
+    }
+
+    private fun hideRView() {
+        recyclerView.visibility = View.GONE
+        progressBar.visibility = View.GONE
+        tvError.visibility = View.VISIBLE
     }
 
     private fun renderList(users: List<GithubUsers>) {
@@ -58,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun searchUser(){
+    private fun searchUser() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (query.isNotEmpty()) {
