@@ -1,7 +1,10 @@
 package com.iram.githubusersearchapp.ui
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -14,6 +17,7 @@ import com.iram.githubusersearchapp.model.GithubUsers
 import com.iram.githubusersearchapp.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.System.exit
 import javax.inject.Inject
 
 
@@ -23,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var adapter: MainAdapter
-
+    var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -116,4 +120,16 @@ class MainActivity : AppCompatActivity() {
             renderList(it)
         })
     }
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        doubleBackToExitPressedOnce = true
+        Toast.makeText(this, getString(R.string.exit), Toast.LENGTH_SHORT).show()
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            doubleBackToExitPressedOnce = false
+        }, 2000)
+    }
 }
+
