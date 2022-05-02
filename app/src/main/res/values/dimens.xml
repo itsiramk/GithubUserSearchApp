@@ -13,5 +13,11 @@
     <dimen name="small_font">12sp</dimen>
     <dimen name="density_10dp">10dp</dimen>
     <dimen name="density_5dp">5dp</dimen>
+    <dimen name="density_3dp">3dp</dimen>
+    <dimen name="density_0dp">0dp</dimen>
+    <dimen name="density_50dp">50dp</dimen>
+    <dimen name="density_15dp">15dp</dimen>
+    <dimen name="density_80dp">80dp</dimen>
+    <dimen name="density_8dp">8dp</dimen>
 
 </resources>

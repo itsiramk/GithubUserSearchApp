@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(
         getUserList()
     }
 
-    fun getUserList() {
+    private fun getUserList() {
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
             val response = mainRepository.getUserList()

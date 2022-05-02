@@ -13,13 +13,17 @@ android {
 
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.iram.githubuserapp"
+        applicationId "com.iram.githubusersearchapp"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", "\"https://api.github.com/\""
+        buildConfigField "String", "ACCESS_TOKEN", "\"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\""
+
+
     }
 
     buildTypes {

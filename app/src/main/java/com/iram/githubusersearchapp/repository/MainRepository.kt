@@ -13,7 +13,4 @@ class MainRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun getUserByName(userName:String): Response<SearchUsers> {
         return apiService.getUserByName(userName)
     }
-    suspend fun getUserInfo(userName:String): Response<GithubUsers> {
-        return apiService.getUserInfo(userName)
-    }
 }

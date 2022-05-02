@@ -20,7 +20,7 @@ object NetworkingModule {
 
     @Provides
     fun providesBaseUrl(): String {
-        return "https://api.github.com/"
+        return BuildConfig.BASE_URL
     }
 
     @Provides
@@ -41,7 +41,7 @@ object NetworkingModule {
                 val requestBuilder = chain.request().newBuilder()
                 requestBuilder.addHeader(
                     "Authorization",
-                    Credentials.basic("itsiramkhan", "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")
+                    Credentials.basic("itsiramkhan", BuildConfig.ACCESS_TOKEN)
                 )
                 chain.proceed(requestBuilder.build())
             }

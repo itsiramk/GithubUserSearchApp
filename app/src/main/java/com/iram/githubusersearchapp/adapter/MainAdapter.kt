@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.iram.githubusersearchapp.R
 import com.iram.githubusersearchapp.model.GithubUsers
 import kotlinx.android.synthetic.main.item_layout.view.*
@@ -21,7 +23,10 @@ class MainAdapter  @Inject constructor(
             itemView.tvUserEmail.text = user.htmlUrl
 
             Glide.with(itemView.imgAvatar.context)
-                .load(user.avatarUrl).error(R.drawable.ic_launcher_background)
+                .load(user.avatarUrl).transform(CircleCrop())
+                .placeholder(R.drawable.avatar)
+                .error(R.drawable.avatar)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(itemView.imgAvatar)
         }
     }
